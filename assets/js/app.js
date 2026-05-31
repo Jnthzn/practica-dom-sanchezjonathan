@@ -32,12 +32,18 @@ const personajes = [
 ];
 
 const contenedor = document.querySelector("#contenedorPersonajes");
+/* para poder modificar el div donde van las cards */
 
-function renderizarPersonajes() {
+const inputFiltro = document.querySelector("#filtro");
+/* para poder leer lo que escribe el usuario */
+const btnFiltrar = document.querySelector("#btnFiltrar");
+/* para detectar cuándo hace click */
+
+function renderizarPersonajes(listaPersonajes) {
   contenedor.innerHTML = "";
   /* esto limpia el contenedor para no renderizar cards y que sigan las anteriores */
 
-  personajes.forEach((personaje) => {
+  listaPersonajes.forEach((personaje) => {
     const { nombre, imagen } = personaje;
     /* esto simplifica la estructura: const nombre = personaje.nombre; | const imagen = personaje.imagen; (desestructuracion) */
 
@@ -60,4 +66,17 @@ function renderizarPersonajes() {
   });
 }
 
-renderizarPersonajes();
+renderizarPersonajes(personajes);
+
+btnFiltrar.addEventListener("click", () => {
+  const textoBuscado = inputFiltro.value.toLowerCase();
+
+  const personajesFiltrados = personajes.filter((personaje) => {
+    return personaje.nombre.toLowerCase().includes(textoBuscado);
+  });
+
+  renderizarPersonajes(personajesFiltrados);
+  //   console.log(personajesFiltrados);
+  console.log(textoBuscado);
+  /* muestra el contenido de <input id="filtro"> */
+});
