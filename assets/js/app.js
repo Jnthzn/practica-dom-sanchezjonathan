@@ -30,3 +30,34 @@ const personajes = [
       "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/5-abraxas.jpg",
   },
 ];
+
+const contenedor = document.querySelector("#contenedorPersonajes");
+
+function renderizarPersonajes() {
+  contenedor.innerHTML = "";
+  /* esto limpia el contenedor para no renderizar cards y que sigan las anteriores */
+
+  personajes.forEach((personaje) => {
+    const { nombre, imagen } = personaje;
+    /* esto simplifica la estructura: const nombre = personaje.nombre; | const imagen = personaje.imagen; (desestructuracion) */
+
+    contenedor.innerHTML += `
+    <div class="col-md-4">
+        <div class="card">
+
+            <img src="${imagen}" clas="card-img-top">
+            <div class="card-body">
+                <h5 class="card-tittle">${nombre}</h5>
+
+                <button class="btn btn-danger">
+                    Eliminar
+                </button>
+
+            </div>
+        </div>
+    </div> `;
+    /* esto recorre cada elemento del arreglo */
+  });
+}
+
+renderizarPersonajes();
