@@ -30,3 +30,24 @@ const personajes = [
       "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/5-abraxas.jpg",
   },
 ];
+
+const formPersonaje = document.querySelector("#formPersonaje");
+const inputNombre = document.querySelector("#nombre");
+const inputImagen = document.querySelector("#imagen");
+
+formPersonaje.addEventListener("submit", (evento) => {
+  evento.preventDefault();
+
+  const nombre = inputNombre.value;
+  const imagen = inputImagen.value;
+
+  const nuevoPersonaje = {
+    id: personajes.length + 1,
+    nombre: nombre,
+    imagen: imagen,
+  };
+
+  personajes.push(nuevoPersonaje);
+
+  renderizarPersonajes(personajes);
+});
